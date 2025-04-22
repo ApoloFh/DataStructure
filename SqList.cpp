@@ -57,3 +57,44 @@ Status ListDelete(SqList &L, int i){
     L.length--;                               // 更新顺序表长度
     return OK;                                // 返回成功状态
 }
+
+// 测试数据结构 
+int main(){
+    SqList L;
+    InitList(L);
+    cout << "请输入10个数：";
+    for (int i = 0; i < 10; i++){
+        cin >> L.elem[i];
+        L.length++;
+    }
+    cout << "顺序表当前长度为：" << L.length << endl;
+    cout << "请输入元素位置：";
+    int pos;
+    cin >> pos;
+    int e;
+    GetElem(L, pos, e);
+    cout << "该元素为：";
+    cout << e << endl;
+    cout << "请输入元素：";
+    cin >> e;
+    pos = LocateElem(L, e);
+    cout << "元素位置为：";
+    cout << pos << endl;
+    cout << "请输入插入位置及元素：";
+    cin >> pos >> e;
+    ListInsert(L, pos, e);
+    cout << "顺序表当前长度为：" << L.length << endl;
+    for (int i = 0; i < L.length; i++){
+        cout << L.elem[i] << " ";
+    }
+    cout << endl;
+    cout << "请输入删除位置：";
+    cin >> pos;
+    ListDelete(L, pos);
+    cout << "顺序表当前长度为：" << L.length << endl;
+    for (int i = 0; i < L.length; i++){
+        cout << L.elem[i] << " ";
+    }
+    cout << endl; 
+    return 0;   
+}
