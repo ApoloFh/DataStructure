@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-#define Status int
-#define ElemType int
 #define MAXSIZE 100
 #define OK 1
 #define ERROR 0
+typedef int Status;
+typedef int ElemType;
 
 // 定义顺序表结构体
 typedef struct SqList {
