@@ -58,6 +58,25 @@ Status ListDelete(SqList &L, int i){
     return OK;                                // 返回成功状态
 }
 
+// 打印顺序表中的所有元素
+void PrintList(SqList L) {
+    for (int i = 0; i < L.length; i++) {
+        cout << L.elem[i] << " ";
+    }
+    cout << endl;
+}
+
+// 销毁顺序表
+Status DestroyList(SqList &L) {
+    if (L.elem) {
+        delete[] L.elem;  // 释放动态分配的内存
+        L.elem = NULL; // 将指针置为空
+        L.length = 0;     // 重置长度
+        return OK;
+    }
+    return ERROR;
+}
+
 // 测试数据结构 
 int main(){
     SqList L;
@@ -68,33 +87,32 @@ int main(){
         L.length++;
     }
     cout << "顺序表当前长度为：" << L.length << endl;
+    PrintList(L); // 打印顺序表
+
     cout << "请输入元素位置：";
     int pos;
     cin >> pos;
     int e;
     GetElem(L, pos, e);
-    cout << "该元素为：";
-    cout << e << endl;
+    cout << "该元素为：" << e << endl;
+
     cout << "请输入元素：";
     cin >> e;
     pos = LocateElem(L, e);
-    cout << "元素位置为：";
-    cout << pos << endl;
+    cout << "元素位置为：" << pos << endl;
+
     cout << "请输入插入位置及元素：";
     cin >> pos >> e;
     ListInsert(L, pos, e);
     cout << "顺序表当前长度为：" << L.length << endl;
-    for (int i = 0; i < L.length; i++){
-        cout << L.elem[i] << " ";
-    }
-    cout << endl;
+    PrintList(L); // 打印顺序表
+
     cout << "请输入删除位置：";
     cin >> pos;
     ListDelete(L, pos);
     cout << "顺序表当前长度为：" << L.length << endl;
-    for (int i = 0; i < L.length; i++){
-        cout << L.elem[i] << " ";
-    }
-    cout << endl; 
+    PrintList(L); // 打印顺序表
+
+    DestroyList(L); // 销毁顺序表
     return 0;   
 }
